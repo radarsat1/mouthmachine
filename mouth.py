@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 from pylab import *
 from scikits.audiolab import Sndfile, play
 from scipy.signal import lfilter
@@ -49,7 +50,7 @@ def get_sounds(data, edges, n=32, hopsize=16):
         if e == 1:
             yield data[i*hopsize-n:i*hopsize-n+4000]
 
-mouth = [s.read_frames(s.nframes) for s in [Sndfile('mouth.ogg')]][0]
+mouth = [s.read_frames(s.nframes) for s in [Sndfile(sys.argv[1])]][0]
 
 hopsize = 16
 fftsize = 256
